@@ -1,0 +1,11 @@
+﻿Cust_ id;Account_location;Title;First_name;Last_name;Create_date;Country_code;Language;Status;Date_of_birth;Contact;Customer_group
+4188499;GIB;Mr;Elvis;Presley;01/11/2011;US;en;A;18/10/1948;Y;Bronze
+1191874;GIB;Mr;Jim;Morrison;19/09/2008;US;en;A;27/07/1967;Y;Gold
+3042166;GIB;Mr;Keith;Moon;11/01/2011;UK ;en;A;26/07/1970;Y;Gold
+5694730;GIB;Mr;James;Hendrix;10/10/2012;US;en;A;05/04/1976;N;Bronze
+4704925;GIB;Mr;Marc;Bolan;26/03/2012;UK ;en;A;11/03/1982;Y;Bronze
+1569944;GIB;Miss;Janice;Joplin;09/04/2009;US;en;A;22/08/1954;Y;Gold
+3531845;GIB;Mr;Bon;Scott;02/04/2011;AU;en;A;22/10/1975;N;Silver
+2815836;GIB;Mr;Buddy;Holly;17/10/2010;US;en;A;13/01/1964;Y;Silver
+889782;GIB;Mr;Bob;Marley;16/01/2008;UK ;en;A;18/04/1964;Y;Silver
+1965214;GIB;Mr;Sidney;Vicious;18/12/2009;UK ;en;A;12/08/1976;N;Bronze
