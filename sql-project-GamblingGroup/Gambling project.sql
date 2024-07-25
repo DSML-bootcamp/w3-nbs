@@ -26,7 +26,7 @@ gambling_project.customer
 INNER JOIN gambling_project.account ON 
 customer.CustId = account.CustId;
 
-/* Question 4 (Excel q: keep the date in spearate sheets, and then sumifs or pivot table, obs pivot table */
+/* Question 4 (Excel q: keep the date in separate sheets, and then sumifs or pivot table, obs pivot table */
 SELECT 
 gambling_project.betting.BetDate AS betting_date,
 gambling_project.product.product,
@@ -129,7 +129,8 @@ GROUP BY
 AccountNo;
 
 SELECT 
-AccountNo
+AccountNo,
+COUNT(DISTINCT Product)
 FROM 
 betting
 WHERE 
@@ -139,12 +140,9 @@ AccountNo
 HAVING 
 COUNT(DISTINCT Product) = 2;
 
-/*Question 9 */
+/*Question 9  query is wrong it should bwe 1 player i think*/
 SELECT 
-account.AccountNo,
-customer.Title,
-customer.FirstName,
-customer.LastName,
+account.AccountNo, customer.Title, customer.FirstName, customer.LastName,
 SUM(CASE WHEN betting.Product = 'Sportsbook' THEN betting.Bet_Amt ELSE 0 END) AS sportsbook_bet_amount,
 SUM(CASE WHEN betting.Product = 'Vegas' THEN betting.Bet_Amt ELSE 0 END) AS vegas_bet_amount
 FROM 
@@ -159,18 +157,31 @@ WHERE
 betting.Bet_Amt > 0
 GROUP BY 
 account.AccountNo,
-customer.Title,
-customer.FirstName,
-customer.LastName
+customer.Title, customer.FirstName, customer.LastName
 HAVING 
 SUM(CASE WHEN betting.Product = 'Sportsbook' THEN 1 ELSE 0 END) > 0
 OR SUM(CASE WHEN betting.Product != 'Sportsbook' AND betting.Product != 'Vegas' THEN 1 ELSE 0 END) = 0;
 
+ SELECT 
+    c.Title,
+    c.FirstName,
+    c.LastName,
+    SUM(b.Bet_Amt) AS Sportsbook_Total_Bet_Amount
+FROM 
+    customer c
+JOIN 
+    account a ON c.CustId = a.CustId
+JOIN 
+    betting b ON a.AccountNo = b.AccountNo
+WHERE 
+    b.Bet_Amt > 0
+    AND b.Product = 'Sportsbook'
+GROUP BY 
+    c.Title, c.FirstName, c.LastName;
+    
 /* Question 10 */
 SELECT 
-customer.Title,
-customer.FirstName,
-customer.LastName,
+customer.Title, customer.FirstName, customer.LastName,
 MAX(ranked_products.Product) AS Favorite_Product,
 MAX(ranked_products.total_amount_bet) AS Max_Bet_Amount
 FROM 
@@ -200,13 +211,10 @@ JOIN
 ON 
 account.CustId = ranked_products.CustId
 GROUP BY 
-customer.Title,
-customer.FirstName,
-customer.LastName
+customer.Title, customer.FirstName, customer.LastName
 ORDER BY 
-customer.Title,
-customer.FirstName,
-customer.LastName;
+customer.Title, customer.FirstName, customer.LastName;
+
 
 /* Question 11 */
 SELECT 
